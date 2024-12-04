@@ -431,8 +431,9 @@ export class PdfPrinter implements Printer {
                                 'FD'
                             );
 
-                            const txtContainer = container.scale(0.8);
+                            const txtContainer = container.scale(0.9);
                             text = paletteEntry.ref;
+                            text = text.substring(1,text.length)
                             if (project.exportConfiguration.useSymbols) {
                                 text =
                                     (project.paletteConfiguration.palettes
