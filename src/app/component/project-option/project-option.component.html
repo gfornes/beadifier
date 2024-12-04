@@ -108,7 +108,9 @@
                     >
                         <app-matching-configuration
                             [configuration]="project.matchingConfiguration"
-                            (onChange)="callback()"
+                            [boardConfiguration]="project.boardConfiguration"
+                            (onChangeM)="callback()"
+                            (onChangeB)="callback()"
                         >
                         </app-matching-configuration>
                     </div>

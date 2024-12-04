@@ -33,6 +33,7 @@ export class BoardConfigurationComponent {
     }
 
     callback() {
+        console.log("board-configuration.component.ts", "callback");
         this.onChange.emit(this.configuration);
     }
 }

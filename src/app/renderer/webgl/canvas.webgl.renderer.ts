@@ -81,11 +81,29 @@ export class CanvasWebGLRenderer implements Renderer {
         reducedColor: Uint8ClampedArray,
         project: Project
     ) {
+
+        console.log("drawScene", "project", project);
+
+        let bgColor = [0.9, 0.9, 0.9, 1];
+
+        if (project.boardConfiguration.bgColor) {
+            // Convert hex to rgb values between 0 and 1
+            const hex = project.boardConfiguration.bgColor;
+            bgColor = [
+                parseInt(hex.substring(1, 3), 16) / 255,
+                parseInt(hex.substring(3, 5), 16) / 255,
+                parseInt(hex.substring(5, 7), 16) / 255,
+                1,
+            ];
+
+            console.log("drawScene", "bgColor", bgColor);
+        }
+
         const mvMatrix = mat4.create();
         const pMatrix = mat4.create();
 
         gl.viewport(0, 0, width * beadSizePx, height * beadSizePx);
-        gl.clearColor(0.9, 0.9, 0.9, 1);
+        gl.clearColor(bgColor[0], bgColor[1], bgColor[2], bgColor[3]);
         // tslint:disable-next-line: no-bitwise
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 

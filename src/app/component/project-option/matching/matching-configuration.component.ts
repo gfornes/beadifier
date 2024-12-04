@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { MatchingConfiguration } from '../../../model/configuration/matching-configuration.model';
 import { Matching, MATCHINGS } from '../../../model/matching/matching.model';
+import { BoardConfiguration } from '../../../model/configuration/board-configuration.model';
 
 @Component({
     selector: 'app-matching-configuration',
@@ -10,8 +11,10 @@ import { Matching, MATCHINGS } from '../../../model/matching/matching.model';
     styleUrls: ['./matching-configuration.component.scss'],
 })
 export class MatchingConfigurationComponent {
+    @Input() boardConfiguration: BoardConfiguration;
     @Input() configuration: MatchingConfiguration;
-    @Output() onChange = new EventEmitter<MatchingConfiguration>();
+    @Output() onChangeM = new EventEmitter<MatchingConfiguration>();
+    @Output() onChangeB = new EventEmitter<BoardConfiguration>();
 
     availableMatchings: Matching[];
 
@@ -19,7 +22,12 @@ export class MatchingConfigurationComponent {
         this.availableMatchings = _.values(MATCHINGS);
     }
 
-    callback() {
-        this.onChange.emit(this.configuration);
+    callbackM() {
+        this.onChangeM.emit(this.configuration);
+    }
+
+    callbackB() {
+        console.log("matching-configuration.component.ts", "callbackB");
+        this.onChangeB.emit(this.boardConfiguration);
     }
 }

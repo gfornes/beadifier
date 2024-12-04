@@ -66,4 +66,19 @@
             </div>
         </mat-grid-tile>
     </mat-grid-list>
+    <mat-form-field class="example-full-width">
+        <mat-label>Width</mat-label>
+        <input
+            matInput
+            [(ngModel)]="configuration.setWidth"
+            placeholder="Set width"
+            value="20"
+        />
+    </mat-form-field>
+    <button
+        aria-label="Set width"
+        class="btn-medium"
+        mat-raised-button
+        (click)="increaseSetWidth()"
+    >Set width</button>
 </div>

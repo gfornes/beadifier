@@ -32,7 +32,8 @@ export class ImagePosition {
 export function drawImageInsideCanvas(
     canvas,
     image,
-    rendererConfiguration: RendererConfiguration
+    rendererConfiguration: RendererConfiguration,
+    width?: number,
 ): ImagePosition {
     /**
      * Credit to : https://sdqali.in/blog/2013/10/03/fitting-an-image-in-to-a-canvas-object/
@@ -44,28 +45,37 @@ export function drawImageInsideCanvas(
 
     // If image's aspect ratio is less than canvas's we fit on height
     // and place the image centrally along width
-    if (imageAspectRatio < canvasAspectRatio) {
-        renderableHeight = rendererConfiguration.fit
-            ? canvas.height
-            : image.height;
-        renderableWidth = rendererConfiguration.fit
-            ? image.width * (renderableHeight / image.height)
-            : image.width;
-    } else if (imageAspectRatio > canvasAspectRatio) {
-        renderableWidth = rendererConfiguration.fit
-            ? canvas.width
-            : image.width;
-        renderableHeight = rendererConfiguration.fit
-            ? image.height * (renderableWidth / image.width)
-            : image.height;
+
+    if (width) {
+        renderableWidth = width;
+        renderableHeight = width / imageAspectRatio;
     } else {
-        renderableHeight = rendererConfiguration.fit
-            ? canvas.height
-            : image.height;
-        renderableWidth = rendererConfiguration.fit
-            ? canvas.width
-            : image.width;
+        if (imageAspectRatio < canvasAspectRatio) {
+            renderableHeight = rendererConfiguration.fit
+                ? canvas.height
+                : image.height;
+            renderableWidth = rendererConfiguration.fit
+                ? image.width * (renderableHeight / image.height)
+                : image.width;
+        } else if (imageAspectRatio > canvasAspectRatio) {
+            renderableWidth = rendererConfiguration.fit
+                ? canvas.width
+                : image.width;
+            renderableHeight = rendererConfiguration.fit
+                ? image.height * (renderableWidth / image.width)
+                : image.height;
+        } else {
+            renderableHeight = rendererConfiguration.fit
+                ? canvas.height
+                : image.height;
+            renderableWidth = rendererConfiguration.fit
+                ? canvas.width
+                : image.width;
+        }
     }
+
+
+
 
     xStart = rendererConfiguration.center
         ? (canvas.width - renderableWidth) / 2

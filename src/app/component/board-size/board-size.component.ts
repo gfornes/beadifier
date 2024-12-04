@@ -17,19 +17,27 @@ export class BoardSizeComponent {
     }
 
     increaseNbBoardWidth() {
+        this.configuration.setWidth = 0;
         this.configuration.nbBoardWidth++;
         this.onChangeCallback();
     }
     decreaseNbBoardWidth() {
+        this.configuration.setWidth = 0;
         this.configuration.nbBoardWidth--;
         this.onChangeCallback();
     }
     increaseNbBoardHeight() {
+        this.configuration.setWidth = 0;
         this.configuration.nbBoardHeight++;
         this.onChangeCallback();
     }
     decreaseNbBoardHeight() {
+        this.configuration.setWidth = 0;
         this.configuration.nbBoardHeight--;
+        this.onChangeCallback();
+    }
+
+    increaseSetWidth() {
         this.onChangeCallback();
     }
 

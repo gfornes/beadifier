@@ -95,6 +95,17 @@ export class AppComponent {
                 }
 
                 const canvas = document.createElement('canvas');
+                let width = 0;
+                if (this.project.boardConfiguration.setWidth) {
+                    width = this.project.boardConfiguration.setWidth;
+
+                    const aspectRatio = this.imgTag.nativeElement.width / this.imgTag.nativeElement.height;
+                    const newHeight = this.project.boardConfiguration.setWidth / aspectRatio;
+
+                    this.project.boardConfiguration.nbBoardWidth = Math.ceil(width / this.project.boardConfiguration.board.nbBeadPerRow);
+                    this.project.boardConfiguration.nbBoardHeight = Math.ceil(newHeight / this.project.boardConfiguration.board.nbBeadPerRow);
+                }
+
                 canvas.width =
                     this.project.boardConfiguration.nbBoardWidth *
                     this.project.boardConfiguration.board.nbBeadPerRow;

@@ -22,6 +22,7 @@ export class ProjectOptionComponent {
     }
 
     callback() {
+        console.log("project-option.component.ts", "callback");
         this.onLoad.emit(this.project);
     }
 

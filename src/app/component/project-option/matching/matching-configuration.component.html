@@ -6,7 +6,7 @@
                 aria-label="matching"
                 [(ngModel)]="configuration.matching"
                 name="matching"
-                (selectionChange)="callback()"
+                (selectionChange)="callbackM()"
             >
                 <mat-option
                     *ngFor="let matching of availableMatchings"
@@ -16,5 +16,15 @@
                 </mat-option>
             </mat-select>
         </mat-form-field>
+    </div>
+
+    <div class="mat-subheading-2">Color picker</div>
+    <div>
+        <input
+            type="color"
+            [(ngModel)]="boardConfiguration.bgColor"
+            aria-label="color picker"
+            (change)="callbackB()"
+        >
     </div>
 </div>
