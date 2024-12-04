@@ -41,4 +41,21 @@ export class UploadImageButtonComponent {
             reader.readAsDataURL(this.input.nativeElement.files[0]);
         }
     }
+
+    private async autoLoadDefaultImage() {
+
+        const response = await fetch('/assets/fjell.jpg');
+        const blob = await response.blob();
+        const file = new File([blob], 'fjell.jpb', { type: 'image/jpeg' });
+
+        // Create a DataTransfer object to simulate a file input
+        const dataTransfer = new DataTransfer();
+        dataTransfer.items.add(file);
+
+        // Assign the file to the input element
+        this.input.nativeElement.files = dataTransfer.files;
+
+        // Trigger the file reading process
+        this.readImage(new Event('change'));
+    }
 }
