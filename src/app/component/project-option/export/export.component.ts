@@ -7,6 +7,7 @@ import { SvgPrinter } from '../../../printer/svg/svg.printer';
 import { PngPrinter } from '../../../printer/png/png.printer';
 import { JpgPrinter } from '../../../printer/jpg/jpg.printer';
 import { XlsxPrinter } from '../../../printer/xlsx/xlsx.printer';
+import { GcodePrinter } from '../../../printer/gcode/gcode.printer';
 
 @Component({
     selector: 'app-export',
@@ -24,6 +25,7 @@ export class ExportComponent {
 
     constructor() {
         this.availablePrinters = [
+            new GcodePrinter(),
             new PdfPrinter(),
             new SvgPrinter(),
             new PngPrinter(),
