@@ -9,7 +9,8 @@ export class Board {
 }
 
 export const BOARDS = {
-    MIDI: new Board('Midi', 29),
+    MIDI: new Board('Midi', 30),
+    MIDI_2: new Board('Midi_2', 29),
     MINI: new Board('Mini', 57),
     MINI_ARTKAL: new Board('Mini', 50),
 };
