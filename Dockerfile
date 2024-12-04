@@ -10,24 +10,13 @@ WORKDIR /app
 
 # install app dependencies
 RUN npm install -g yarn
-COPY package.json /app/package.json
-COPY yarn.lock /app/yarn.lock
-RUN yarn
+COPY package.json yarn.lock ./
+RUN yarn install
 
 # add app
-COPY . /app
+COPY . .
 
-# generate build
-RUN yarn build:prod
+EXPOSE 4200
 
-# base image
-FROM nginx:1.17.1-alpine
-
-# copy artifact build from the 'build environment'
-COPY --from=build /app/dist /usr/share/nginx/html
-
-# expose port 80
-EXPOSE 80
-
-# run nginx
-CMD ["nginx", "-g", "daemon off;"]
+# start app and make it accessible from outside
+CMD ["yarn", "start", "--host", "0.0.0.0"]
